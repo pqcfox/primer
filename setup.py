@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name = 'primer',
-    packages = ['primer'],
+    packages = ['primer', 'tests'],
     version = '1.0',
     description = 'Number-theoretic algorithms related to primes',
     author = 'useanalias',
