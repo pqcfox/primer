@@ -1,20 +1,21 @@
 import pytest
 
-from ..utils import eratosthenes 
+from ..utils import eratosthenes, wheel
 
-class TestEratosthenes:
-    passing = [(2,  [2]), 
-               (12, [2, 3, 5, 7, 11]),
-               (15, [2, 3, 5, 7, 11, 13]),
-               (23, [2, 3, 5, 7, 11, 13, 17, 19, 23])]
+eratosthenes_values = [(2,  [2]), 
+                       (12, [2, 3, 5, 7, 11]),
+                       (15, [2, 3, 5, 7, 11, 13]),
+                       (23, [2, 3, 5, 7, 11, 13, 17, 19, 23])]
 
-    failing = [-2395.3, -67/2, -23, 0, 1]
+@pytest.mark.parametrize("n,expected", eratosthenes_values)
+def test_eratosthenes(n, expected):
+    assert eratosthenes(n) == expected 
 
-    @pytest.mark.parametrize("input,expected", passing)
-    def test_passing(self, input, expected):
-        assert eratosthenes(input) == expected 
+wheel_values = [(8,  [2],       [2, 3, 5, 7]),
+                (12, [2, 3],    [2, 3, 5, 7, 11]),
+                (19, [2, 3, 5], [2, 3, 5, 7, 11, 13, 17, 19]),
+                (32, [2, 3],    [2, 3, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31])]
 
-    @pytest.mark.parametrize("input", failing)
-    def test_failing(self, input):
-        with pytest.raises(ValueError):
-            eratosthenes(input)
+@pytest.mark.parametrize("n,basis,expected", wheel_values)
+def test_wheel(n, basis, expected):
+    assert wheel(n, basis) == expected

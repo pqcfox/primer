@@ -1,11 +1,10 @@
-from .utils import eratosthenes
+from .utils import eratosthenes, bound
 
 import collections
 import math
 
 def trial(n, sieve=True):
-    if n < 2:
-        raise ValueError('n cannot be less than 2')
+    n = bound(n) 
     factors = collections.Counter() 
     upper = int(math.sqrt(n))
     divisors = list(range(2, upper)) if sieve else eratosthenes(upper) 
@@ -19,3 +18,5 @@ def trial(n, sieve=True):
         factors[n] += 1
 
     return factors
+
+
