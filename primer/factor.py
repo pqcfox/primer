@@ -1,4 +1,5 @@
-from .utils import eratosthenes, bound
+from .sieve import eratosthenes
+from .utils import bound
 
 import collections
 import math

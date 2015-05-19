@@ -1,6 +1,6 @@
 import pytest
 
-from ..utils import eratosthenes, wheel
+from ..sieve import eratosthenes, wheel
 
 eratosthenes_values = [(2,  [2]), 
                        (12, [2, 3, 5, 7, 11]),
